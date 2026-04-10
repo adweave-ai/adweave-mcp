@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.adweave/meta-ads-mcp",
+  "title": "AdWeave — Meta Ads MCP Server",
+  "description": "Meta Ads MCP server with 47 tools for campaigns, creatives, audiences, and insights.",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.adweave.ai/meta-ads-mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer token using your AdWeave API key (aw_ prefix)",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
