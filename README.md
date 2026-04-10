@@ -1,5 +1,7 @@
 # AdWeave — Meta Ads MCP Server
 
+[![smithery badge](https://smithery.ai/badge/brandon-vyur/adweave)](https://smithery.ai/servers/brandon-vyur/adweave)
+
 Meta Ads MCP server with 47 tools for campaigns, creatives, audiences, and insights.
 
 Connect Claude, Cursor, or any MCP client directly to the Meta Marketing API. Create and manage campaigns, upload creatives, pull performance insights, target audiences, run bulk operations — plus AI-powered campaign diagnosis and buyer persona generation.
