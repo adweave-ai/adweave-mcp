@@ -1,19 +1,17 @@
-# AdWeave — Meta Ads MCP Server
+# AdWeave MCP Server
 
-[![smithery badge](https://smithery.ai/badge/brandon-vyur/adweave)](https://smithery.ai/servers/brandon-vyur/adweave)
+The MCP server that powers the [AdWeave Claude Code plugin](https://github.com/adweave-ai/adweave-claude-plugin). Covers Meta Ads campaign management **plus** AdWeave-specific workflow tools — brand context, avatars, beliefs, offer brief, methodology library, and competitor intelligence.
 
-Meta Ads MCP server with 47 tools for campaigns, creatives, audiences, and insights.
+60+ tools in one MCP endpoint. Use it standalone from Claude Desktop / Cursor / any MCP client, or let the [AdWeave plugin](https://github.com/adweave-ai/adweave-claude-plugin) orchestrate it for you via opinionated slash commands.
 
-Connect Claude, Cursor, or any MCP client directly to the Meta Marketing API. Create and manage campaigns, upload creatives, pull performance insights, target audiences, run bulk operations — plus AI-powered campaign diagnosis and buyer persona generation.
-
-## Quick Setup
+## Quick setup (standalone)
 
 Add this to your MCP client config:
 
 ```json
 {
   "mcpServers": {
-    "adweave-meta-ads": {
+    "adweave": {
       "url": "https://mcp.adweave.ai/meta-ads-mcp",
       "headers": {
         "Authorization": "Bearer <YOUR_ADWEAVE_API_TOKEN>"
@@ -25,55 +23,73 @@ Add this to your MCP client config:
 
 Get your API token at [adweave.ai](https://adweave.ai) (free tier: 50 calls/month).
 
-## Tools (47)
+> If you'd rather use OAuth and pre-built slash commands for daily creative generation, metrics feedback, ad launch, creative production, and competitor research — install the [AdWeave plugin](https://github.com/adweave-ai/adweave-claude-plugin) instead.
 
-### Campaign Management
-- Create, update, duplicate, and manage campaigns
-- Create, update, and manage ad sets
-- Create, update, and manage ads
+## Tools
+
+### Campaign management
+- Create, update, duplicate, and manage campaigns / ad sets / ads
 - Bulk operations across multiple ad accounts
 
-### Creative Management
+### Creative management
 - Upload images and videos
-- Build single-image creatives
-- Build carousel creatives
+- Build single-image and carousel creatives
+- List previously uploaded creatives
 
-### Audience Targeting
-- Search interests and behaviors
-- Search geolocations
+### Audience targeting
+- Search interests, behaviors, demographics, geolocations
 - Estimate audience size before launch
 
-### Performance Insights
-- Pull campaign, ad set, and ad-level insights
-- Demographic breakdowns
-- Placement breakdowns
+### Performance insights
+- Pull campaign / ad set / ad-level insights
+- Demographic and placement breakdowns
+- Bulk insights across many ads in one call
 
-### AI Intelligence
-- **Campaign Intelligence** — AI-powered diagnosis of your funnel performance
-- **Customer Avatars** — Buyer persona generation from your actual ad data
+### Brand context (AdWeave-specific)
+- `list_brands`, `set_brand_context`, `get_current_brand_context`, `get_brand_profile`
+- Brand profile includes ad account IDs, page/IG IDs, pixel, landing URL, colors, fonts, voice notes
 
-## Transport & Auth
+### AdWeave AI foundation
+- `get_avatars` — buyer personas with rich evidence, scoped to your org
+- `get_offer_brief` — product / pricing / funnel / differentiation data
+- `get_beliefs` — Phase-1 and Phase-2 beliefs, auto-synthesized via Claude if unset
+- `get_research_notes` — aggregated avatar evidence + competitor context
+
+### Methodology library
+- `get_adweave_methodology` — AdWeave's argumentation framework, copy rules, two-phase belief system, image-generation guide, Meta safe zones, and per-skill procedures. Served auth-gated.
+
+### Competitor intelligence
+- `get_competitor_intelligence` — live competitor ad summaries from the AdWeave discovery pipeline (Meta Ad Library scraping + LLM pattern analysis)
+
+### Instagram
+- Post to Instagram, fetch creator media, creator insights
+
+## Transport & auth
 
 | Property | Value |
 |---|---|
-| **Protocol** | MCP (Model Context Protocol) |
-| **Transport** | Streamable HTTP |
-| **Auth** | API Token (`aw_` prefix) or OAuth |
-| **Endpoint** | `https://mcp.adweave.ai/meta-ads-mcp` |
+| Protocol | MCP (Model Context Protocol) |
+| Transport | Streamable HTTP |
+| Auth | API Token (`aw_` prefix) or OAuth |
+| Endpoint | `https://mcp.adweave.ai/meta-ads-mcp` |
+| Connector name | `adweave` |
 
 ## Pricing
 
-| Plan | Calls/month | Price |
-|---|---|---|
-| Free | 50 | $0 |
-| Pro | 5,000 | See [pricing](https://adweave.ai/pricing) |
-| Team | 25,000 | See [pricing](https://adweave.ai/pricing) |
+| Plan | Calls / month |
+|---|---|
+| Free | 50 |
+| Starter | 500 |
+| Pro | Unlimited |
+
+See [adweave.ai/pricing](https://adweave.ai/pricing) for current pricing.
 
 ## Links
 
+- [Plugin](https://github.com/adweave-ai/adweave-claude-plugin) — opinionated Claude Code plugin that wraps this MCP in six slash commands
 - [Website](https://adweave.ai)
 - [Pricing](https://adweave.ai/pricing)
-- [MCP Registry](https://registry.modelcontextprotocol.io) — `ai.adweave/meta-ads-mcp`
+- [MCP Registry](https://registry.modelcontextprotocol.io) — `ai.adweave/adweave-mcp`
 
 ## License
 
